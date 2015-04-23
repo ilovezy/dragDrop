@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; user-scalable=no">
+<title>shopping cart</title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+<style type="text/css">
+h3:hover{cursor: pointer}
+ul{list-style: none; padding: 0}
+li{ padding:5px;  margin: 3px; border: 1px solid #ddd}
+li:hover{cursor: pointer;}
+#getItem{padding:50px;border: 1px solid #ddd}
+</style>
+
+<div class="container">
+	<div class="row ">
+		<div class="col-sm-6">
+			<h2 class="text-center">goods</h2>
+			<div id="catalog" class="">
+				<h3>T-shirts</h3>
+				<ul>
+					<li>lolcat shirt</li>
+					<li>Buckit shirt</li>
+					<li>cheezeburger shirt</li>
+				</ul>
+
+				<h3>bags</h3>
+				<ul>
+					<li>lolcat bags</li>
+					<li>Buckit bags</li>
+					<li>cheezeburger bags</li>
+				</ul>
+				<h3>gadgets</h3>
+				<ul>
+					<li>a gadgets</li>
+					<li>b gadgets</li>
+					<li>c gadgets</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-sm-6" id="cart">
+			<h2>Shopping cart</h2>
+				<h3>&nbsp;</h3>
+			<ul id="getItem">
+				<li class="placeholder bg-danger">东西都给我拖过来</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<script src="jquery-1.11.1.min.js"></script>
+<script src="jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+'use strict'
+
+$('#catalog li').draggable({
+	appendTo: 'body',
+	helper: 'clone'
+})
+
+$('#cart ul').droppable({
+	activeClass: 'bg-warning',
+	accetp: 'li',
+	drop: function(event, ui){
+		$(this).find('.placeholder').remove()
+		$('<li></li>').text(ui.draggable.text()).appendTo(this)
+	}
+}).sortable({
+})
+
+</script>
+
+</body>
+</html>

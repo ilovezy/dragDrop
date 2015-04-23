@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; user-scalable=no">
+<title>相册拖拽</title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+<style type="text/css">
+ul{list-style:none;padding: 0; overflow: hidden}
+ul li{float: left; margin: 10px; overflow: hidden; height: 180px;}
+.min-height-300{min-height: 300px}
+.activeClass{border: 1px solid #5cb85c}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid">
+<h2 class="text-center">相册拖拽 <small>图片在两个框之内拖动看看</small></h2>
+<p class="alert alert-warning">如果需要，直接设置 li 的宽高即可</p>
+<div class="row">
+	<div class="col-sm-6">
+		<h3>这里就是文件列表</h3>
+		<ul id="gallery" class="well min-height-300">
+			<li class="img-thumbnail">
+				<img src="img/1.jpg" /><p>High Taras</p>
+			</li>
+			<li class="img-thumbnail">
+				<img src="img/2.jpg" /><p>High Taras</p>
+			</li>
+			<li class="img-thumbnail">
+				<img src="img/3.jpg" /><p>High Taras</p>
+			</li>
+			<li class="img-thumbnail">
+				<img src="img/4.jpg" /><p>High Taras</p>
+			</li>
+		</ul>
+	</div>
+	<div class="col-sm-6">
+	<h3>这里就是需要修改的文件</h3>
+		<ul id="trash" class="well min-height-300">
+
+		</ul>
+	</div>
+</div>
+
+</div>
+
+<script src="jquery-1.11.1.min.js"></script>
+<script src="jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+'use strict'
+
+var $gallery = $('#gallery'),
+	$trash = $('#trash')
+
+$gallery.children('li').draggable({
+	opacity: 0.5, // 在拖动的时候的透明度（灵魂出窍）
+	revert: 'invalid',
+	containment: 'container',
+	helper: 'clone',
+	cursor: 'move',
+	stack: 'li', // 堆叠，即让元素显示在 z-index 最前面
+	snap: 'ul'
+})
+
+$trash.droppable({
+	accept: '#gallery>li',
+	activeClass: 'activeClass',
+	drop: function(event, ui){
+		deleteImage(ui.draggable)
+	}
+})
+
+$gallery.droppable({
+	accept: '#trash li',
+	activeClass: 'bg-danger',
+	drop: function(event, ui){
+		recycleImage(ui.draggable)
+	}
+})
+
+function deleteImage($item){
+	$item.fadeOut(function(){
+		var $list = $('ul', $trash).length ?
+			$('ul', $trash) :
+			$('<ul />').appendTo($trash)
+
+		$item.appendTo($list).fadeIn(function(){
+			$item.fadeIn()
+		})
+	})
+}
+
+function recycleImage($item){
+	$item.fadeOut(function(){
+		$item.appendTo($gallery).fadeIn()
+	})
+}
+
+// image deletion function
+
+</script>
+
+</body>
+</html>

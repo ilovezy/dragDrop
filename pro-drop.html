@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; user-scalable=no">
+<title>drop</title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+<div class="container">
+	<h2 class="text-center">drop</h2>
+	<h3>drop API</h3>
+	<pre>
+
+$('#draggable, #draggable-nonvalid').draggable()
+
+$('#droppable').droppable({
+	// 最基础的，当有东西被拖动到这里之后触发的函数
+	drop: function(event, ui){
+		$(this).addClass('text-danger').find('p').html('dropped!')
+	},
+
+	// 设置接受的元素, #id .class tag 都行
+	accept: '#draggable',
+
+	// 在可拖动元素被拖动的时候可以添加的class
+	activeClass: 'bg-primary',
+
+	// 拖动元素的中心点（x,y轴中心垂线交点）位于框内时可添加的class
+	hoverClass: 'bg-danger'
+
+})
+	</pre>
+	<h3>测试使用</h3>
+	<span class="btn btn-default" id="draggable">
+		drag me to my target
+	</span>
+	<span class="btn btn-warning" id="draggable-nonvalid">
+		drag me to my target
+	</span>
+	<br />
+<br />
+	<div style="border: 1px solid #ddd; padding: 30px" id="droppable">
+		<p>drop here</p>
+	</div>
+</div>
+
+<script src="jquery-1.11.1.min.js"></script>
+<script src="jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+'use strict'
+
+$('#draggable, #draggable-nonvalid').draggable()
+
+$('#droppable').droppable({
+	// 最基础的，当有东西被拖动到这里之后触发的函数
+	drop: function(event, ui){
+		$(this).addClass('text-danger').find('p').html('dropped!')
+	},
+
+	// 设置接受的元素, #id .class tag 都行
+	accept: '#draggable',
+
+	// 在可拖动元素被拖动的时候可以添加的class
+	activeClass: 'bg-primary',
+
+	hoverClass: 'bg-danger'
+
+})
+
+</script>
+
+</body>
+</html>

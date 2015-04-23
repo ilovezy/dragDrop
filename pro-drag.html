@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; user-scalable=no">
+<title>最后呈现的效果1</title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+<style type="text/css">
+ul li{list-style: none}
+.state-highLight{background: #ccc}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2 class="text-center">最后呈现的效果1</h2>
+<h3>API</h3>
+
+<pre>基础$('selector').draggable()<br />
+.draggable({
+	scroll: true, // or 'fine-tune'，设置浏览器滚动条是否跟随拖动超出可视区一起滚动 ,这个其实可有可无
+	scrollSensitivity: 100,
+	scrollSpeed: 200,
+	axis: 'x',
+	axis: 'y', //设置只能水平或者垂直移动
+	containment: 'parent', // 设置拖动区域，参数可以是 parent 或者直接.class #id
+	helper: 'true', // 设置是否在原地保留虚像（灵魂出窍）
+	cursor: 'move', // 鼠标样式
+	cursorAt: {top: 23, left:231, bottom:321 }, // 鼠标的相对坐标
+
+	// 对应的事件
+	start: function(){
+
+	},
+	drag: function(){
+
+	},
+	stop: function(){
+
+	},
+
+	handle: 'p', // 可触发拖动事件的区域
+	snap: 'parent', // 磁铁，直接 #id .class都可以
+	stack: '#boxB', // 控制z-index，参数直接填想要覆盖的其他区域的 id或者类就行了
+	opacity: 0.5 // 在拖动的时候的透明度（灵魂出窍）
+})
+
+</pre>
+
+<h3>案例</h3>
+<div class="row">
+	<div class="col-sm-6">
+		<ul id="boxA" class="well">
+			<li><span class="btn btn-info">aaa</span></li>
+			<li><span class="btn btn-success">bbb</span></li>
+		</ul>
+	</div>
+	<div class="col-sm-6">
+		<ul id="boxB" class="well">
+			<li><span class="btn btn-danger">ccc</span></li>
+			<li><span class="btn btn-primary">ddd</span></li>
+		</ul>
+	</div>
+
+
+</div>
+
+<h3>可排序</h3>
+	<ul class="list-group sortable">
+		<li class="list-group-item">Item1</li>
+		<li class="list-group-item">Item2</li>
+		<li class="list-group-item">Item3</li>
+		<li class="list-group-item">Item4</li>
+		<li class="list-group-item">Item5</li>
+		<li class="list-group-item">Item6</li>
+		<li class="list-group-item">Item7</li>
+	</ul>
+</div>
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<script src="jquery-1.11.1.min.js"></script>
+<script src="jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+'use strict'
+
+$('li span').draggable({
+	revert: true,
+	helper: 'clone',
+	start: function(){
+		console.log('1')
+	},
+	// handle: 'p', //控制可拖动区域
+	stack: '#boxB' // 好像用来控制z-index
+})
+
+$('.sortable').sortable({
+
+})
+
+</script>
+
+</body>
+</html>

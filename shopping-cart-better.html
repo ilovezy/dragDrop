@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; user-scalable=no">
+<title>shopping-cart-better</title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+<style type="text/css">
+.btn{margin: 15px;}
+</style>
+<div class="container">
+<h2 class="text-center">shopping-cart-better</h2>
+
+<div class="row">
+	<div class="col-sm-6">
+		<h3>把左边的点拖到右边试试看吧</h3>
+		<div class="goods well">
+			<span class="btn btn-default">iphone</span>
+			<span class="btn btn-success">psp</span>
+			<span class="btn btn-danger">nds</span>
+			<span class="btn btn-danger">360</span>
+			<span class="btn btn-warning">xbox</span>
+			<span class="btn btn-default">DMC</span>
+			<span class="btn btn-success">LOL</span>
+			<span class="btn btn-danger">DOTA</span>
+			<span class="btn btn-warning">COD</span>
+			<span class="btn btn-info">ps3</span>
+			<span class="btn btn-warning">gameboy</span>
+			<span class="btn btn-info">gbasp</span>
+			<span class="btn btn-default">gamersky</span>
+			<span class="btn btn-success">3ds</span>
+			<span class="btn btn-info">CS</span>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<h3>这里是被拖过来的东西</h3>
+		<div class="cart well">
+
+		</div>
+	</div>
+</div>
+
+</div>
+
+<script src="jquery-1.11.1.min.js"></script>
+<script src="jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+'use strict'
+
+$(' span').draggable({
+	appendTo: 'body',
+	helper: 'clone'
+})
+
+$('.cart').droppable({
+	activeClass: 'bg-success',
+	drop: function(event, ui){
+		$(this).find('.placeholder').remove()
+		$('<span class="btn btn-default"></span>').text(ui.draggable.text()).appendTo(this)
+	}
+})
+
+</script>
+
+</body>
+</html>

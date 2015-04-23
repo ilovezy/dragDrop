@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; user-scalable=no">
+<title>元素拖拽和释放</title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+<style type="text/css">
+.high-light{backgroud: #428bca;border: 1px solid red}
+.ui-state-hover{background: pink}
+.ui-state-active{background: lightgreen}
+</style>
+<div class="container">
+<h2 class="text-center">元素拖拽和释放</h2>
+<span id="draggable" class="btn btn-success">drop me</span>
+<span id="draggable-nonvalid" class="btn btn-success">drop me</span>
+<div id="droppable" class="well">
+	<p>drop here</p>
+</div>
+</div>
+
+<script src="jquery-1.11.1.min.js"></script>
+<script src="jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+'use strict'
+
+$('#draggable, #draggable-nonvalid').draggable()
+$('#droppable').droppable({
+	accept: '#draggable', // 设置可以接受的元素，
+	activeClass: 'ui-state-active', // 在可以接受的元素开始拖动时，接受框显示的类
+	hoverClass: 'ui-state-hover', // 元素拖到框内时接受框显示的类
+	// 被拖动到这里后的回调函数
+	drop: function(event, ui){
+		$(this).addClass('high-light').find('p').html('dropped')
+	}
+})
+
+
+
+</script>
+
+</body>
+</html>
